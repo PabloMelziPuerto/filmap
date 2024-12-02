@@ -17,7 +17,7 @@ nltk.download('movie_reviews')
 nltk.download('stopwords')
 nltk.download('punkt')
 
-# Paso 1: Cargar los datos
+# Cargar los datos
 from nltk.corpus import movie_reviews
 
 # Cargo reseñas
@@ -59,19 +59,19 @@ def preprocess_text(text):
 # Preprocesar todas las reseñas
 preprocessed_reviews = [preprocess_text(review) for review in reviews_data]
 
-# Paso 3: Vectorización usando TF-IDF
+# Vectorización usando TF-IDF
 vectorizer = TfidfVectorizer(max_features=5000)
 X = vectorizer.fit_transform(preprocessed_reviews)
 y = labels
 
-# Paso 4: Dividir los datos en entrenamiento y prueba
+# Dividir los datos en entrenamiento y prueba
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
 
-# Paso 5: Entrenamiento del modelo (Naive Bayes)
+# Entrenamiento del modelo (Naive Bayes)
 model = MultinomialNB()
 model.fit(X_train, y_train)
 
-# Paso 6: Evaluación del modelo
+# Evaluación del modelo
 y_pred = model.predict(X_test)
 
 # Evaluar precisión
